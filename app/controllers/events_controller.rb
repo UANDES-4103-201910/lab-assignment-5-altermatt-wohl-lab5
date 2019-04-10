@@ -7,11 +7,11 @@ class EventsController < ApplicationController
 	 evento.save!
 	end
 	def update
-	 evento = event.find(params[:name])
+	 evento = event.find(params[:id])
 	 evento.update!(event_params)
 	end
 	def destroy
-	 event = current_account.event.find(params[:name])
+	 event = event.find(params[:id])
 	 event.destroy!
 	end
 end
