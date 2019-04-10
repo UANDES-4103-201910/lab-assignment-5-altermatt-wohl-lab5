@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 	def show
 	 evento = Event.find(params[:id]) 
-     render json: evento
+         render json: evento
 	end
 	def create 
 	 evento=Event.new(params[:event])
