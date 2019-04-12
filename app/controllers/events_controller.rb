@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show,:update,:edit, :destroy]
   def show
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @event }
+    end
   end
   def edit
   end

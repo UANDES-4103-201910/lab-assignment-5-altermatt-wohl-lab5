@@ -1,6 +1,11 @@
 class EventVenuesController < ApplicationController
   before_action :set_eventvenue, only: [:show,:update,:edit, :destroy]
   def show
+    @event_venue = EventVenue.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @event_venue }
+    end
   end
   def edit
   end

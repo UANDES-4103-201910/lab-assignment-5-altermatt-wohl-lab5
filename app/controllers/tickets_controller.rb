@@ -1,6 +1,11 @@
 class TicketsController < ApplicationController
   before_action :set_tickets, only: [:show,:update,:edit, :destroy]
   def show
+    @ticket = Ticket.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @ticket }
+    end
   end
   def edit
   end
