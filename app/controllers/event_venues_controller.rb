@@ -1,6 +1,6 @@
 class EventVenuesController < ApplicationController
   def create
-    @event_venue = EventVenue.new(user_params)
+    @event_venue = EventVenue.new(eventvenue_params)
 
     respond_to do |format|
       if @event_venue.save
@@ -21,7 +21,7 @@ class EventVenuesController < ApplicationController
   end
   def update
     respond_to do |format|
-      if @event_venue.update(user_params)
+      if @event_venue.update(eventvenue_params)
         format.html { redirect_to @event_venue, notice: 'Event Venue was successfully updated.' }
         format.json { render :show, status: :ok, location: @event_venue }
       else

@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   def create
-    @ticket = Ticket.new(user_params)
+    @ticket = Ticket.new(ticket_params)
 
     respond_to do |format|
       if @ticket.save
@@ -21,7 +21,7 @@ class TicketsController < ApplicationController
   end
   def update
     respond_to do |format|
-      if @ticket.update(user_params)
+      if @ticket.update(ticket_params)
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
