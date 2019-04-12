@@ -1,4 +1,9 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show,:update,:edit, :destroy]
+  def show
+  end
+  def edit
+  end
   def create
     @event = Event.new(event_params)
 

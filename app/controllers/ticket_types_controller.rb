@@ -1,4 +1,10 @@
 class TicketTypesController < ApplicationController
+  before_action :set_tickettypes, only: [:show,:update,:edit, :destroy]
+  def show
+  end
+  def edit
+  end
+  def create
         def create
             @tickettype = TicketType.new(tickettype_params)
             respond_to do |format|

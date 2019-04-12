@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_users, only: [:show,:update,:edit, :destroy]
+  def show
+  end
+  def edit
+  end
+  def create
   def create
     @user = User.new(user_params)
 

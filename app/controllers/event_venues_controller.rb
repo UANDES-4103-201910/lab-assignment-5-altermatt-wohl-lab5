@@ -1,4 +1,9 @@
 class EventVenuesController < ApplicationController
+  before_action :set_eventvenue, only: [:show,:update,:edit, :destroy]
+  def show
+  end
+  def edit
+  end
   def create
     @event_venue = EventVenue.new(eventvenue_params)
 
