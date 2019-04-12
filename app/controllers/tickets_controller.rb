@@ -1,18 +1,33 @@
 class TicketsController < ApplicationController
-	def show
-	 @ticket = Ticket.find(params[:id]) 
-         render json: @ticket
-	end
-	def create
-	 @ticket = Ticket.new(params[:ticket])
-	 @ticket.save!
-	end
-	def update
-	 @ticket = Ticket.find(params[:id])
-	 @ticket.update!(ticket_params)
-	end
-	def destroy
-	 @ticket = Ticket.find(params[:id])
-	 @ticket.destroy!
-	end
+  def create
+    @ticket = Ticket.new(user_params)
+
+    respond_to do |format|
+      if @ticket.save
+        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        format.json { render :show, status: :created, location: @ticket }
+      else
+        format.html { render :new }
+        format.json { render json: @Ticket.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def destroy
+    @ticket.destroy
+    respond_to do |format|
+      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+  def update
+    respond_to do |format|
+      if @ticket.update(user_params)
+        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.json { render :show, status: :ok, location: @ticket }
+      else
+        format.html { render :edit }
+        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end

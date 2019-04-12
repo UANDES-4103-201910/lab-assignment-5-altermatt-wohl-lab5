@@ -1,18 +1,34 @@
 class EventVenuesController < ApplicationController
-	def show
-	 @eventvenue = EventVenue.find(params[:id]) 
-         render json: @eventvenue
-	end
-	def create
-	 @eventvenue = EventVenue.new(params[:eventvenue])
-	 @eventvenue.save!
-	end
-	def update
-	 @eventvenue = EventVenue.find(params[:id])
-	 @eventvenue.update!(eventvenue_params)
-	end
-	def destroy
-	 @eventvenue = EventVenue.find(params[:id])
-	 @eventvenue.destroy!
+  def create
+    @event_venue = EventVenue.new(user_params)
+
+    respond_to do |format|
+      if @event_venue.save
+        format.html { redirect_to @event_venue, notice: 'Event Venue was successfully created.' }
+        format.json { render :show, status: :created, location: @event_venue }
+      else
+        format.html { render :new }
+        format.json { render json: @event_venue.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def destroy
+    @event_venue.destroy
+    respond_to do |format|
+      format.html { redirect_to event_venues_url, notice: 'Event Venue was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+  def update
+    respond_to do |format|
+      if @event_venue.update(user_params)
+        format.html { redirect_to @event_venue, notice: 'Event Venue was successfully updated.' }
+        format.json { render :show, status: :ok, location: @event_venue }
+      else
+        format.html { render :edit }
+        format.json { render json: @event_venue.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 	end
 end
