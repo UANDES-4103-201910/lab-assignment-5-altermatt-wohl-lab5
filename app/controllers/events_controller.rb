@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show,:update,:edit, :destroy]
+  before_action :set_event, only: [:show,:update,:edit, :destroy, :upcoming_event]
   def show
     @event = Event.find(params[:id])
     respond_to do |format|
@@ -38,6 +38,12 @@ class EventsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  def upcoming_event
+    @event = Event.where('start >= ?', Date.today).order(:start).paginate(:per_page => 10, :page => params[:page]).first
+    respond_to do |format|
+      @event.show
     end
   end
 end
