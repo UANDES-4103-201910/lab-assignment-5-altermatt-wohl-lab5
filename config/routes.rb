@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         patch/put event_venues/:event_venues_id eventvenues#update
         get events/:event_id/new events#create
         #ruteo a upcoming_event
-        get '/event/:event_id', to: 'events#upcoming_event'
+        get '/event/:event_id', to: 'events#upcoming_events'
 
         delete events/:event_id/delete events#destroy
         patch/put events/:event_id events#update

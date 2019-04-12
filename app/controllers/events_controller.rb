@@ -40,8 +40,8 @@ class EventsController < ApplicationController
       end
     end
   end
-  def upcoming_event
-    @event = Event.where('start >= ?', Date.today).order(:start).paginate(:per_page => 10, :page => params[:page]).first
+  def upcoming_events
+    @event = Event.where('start >= ?', Date.today).order(:start).paginate(:per_page => 10, :page => params[:page]).all
     respond_to do |format|
       @event.show
     end
